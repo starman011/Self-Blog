@@ -1,18 +1,23 @@
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI!;
+export function cn(...inputs: any[]) {
+  return twMerge(clsx(inputs));
+}
 
-let cached = (global as any).mongoose || { conn: null, promise: null };
+// MongoDB connection
+let isConnected = false;
 
 export async function connectDB() {
-  if (cached.conn) return cached.conn;
+  if (isConnected) return;
 
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
-      bufferCommands: false,
-    });
+  const mongooseUrl = process.env.MONGODB_URI;
+
+  if (!mongooseUrl) {
+    throw new Error("MONGODB_URI is missing in .env.local");
   }
 
-  cached.conn = await cached.promise;
-  return cached.conn;
+  await mongoose.connect(mongooseUrl);
+  isConnected = true;
 }

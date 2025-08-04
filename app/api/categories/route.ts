@@ -2,7 +2,6 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import Post from "@/models/Post"; 
-export const dynamic = 'force-static';
 
 export const runtime = "nodejs";
 

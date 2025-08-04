@@ -23,12 +23,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <NavBar />
-          {children}
-        </Providers>
+          <Providers>
+            <NavBar />
+            {children}
+          </Providers>
         </ThemeProvider>
 
-        {/* ✅ These are now correctly used */}
+        {/* ✅ Vercel Analytics + Speed Insights */}
         <Analytics />
         <SpeedInsights />
       </body>

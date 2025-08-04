@@ -1,15 +1,13 @@
 // app/api/categories/route.ts
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
-import Post from "@/models/Post"; 
+import { connectDB } from "@/lib/utils";
+import Post from "@/models/Post";
 
 export const runtime = "nodejs";
 
 export async function GET() {
   try {
-    if (!mongoose.connections[0].readyState) {
-      await mongoose.connect(process.env.MONGODB_URI || "");
-    }
+    await connectDB();
 
     const result = await Post.aggregate([
       { $unwind: "$tags" },

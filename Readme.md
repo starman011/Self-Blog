@@ -31,6 +31,18 @@ A clean, developer-focused blog built from scratch using:
 | Icons     | Lucide                  |
 | Hosting   | Cloudflare Pages        |
 
+## 🔐 Environment Variables
+
+Create a `.env.local` file with the following values so the server can
+authenticate with MongoDB:
+
+```
+MONGODB_URI="<your-mongodb-host>"
+MONGODB_USERNAME="starman011"
+MONGODB_PASSWORD="<your-password>"
+MONGODB_DB="<database-name>"
+```
+
 ## 🗂️ Project Phases
 
 1. Project Setup

@@ -12,12 +12,22 @@ let isConnected = false;
 export async function connectDB() {
   if (isConnected) return;
 
-  const mongooseUrl = process.env.MONGODB_URI;
+  const url = process.env.MONGODB_URI;
+  const username = process.env.MONGODB_USERNAME;
+  const password = process.env.MONGODB_PASSWORD;
+  const dbName = process.env.MONGODB_DB;
 
-  if (!mongooseUrl) {
+  if (!url) {
     throw new Error("MONGODB_URI is missing in .env.local");
   }
 
-  await mongoose.connect(mongooseUrl);
+  if (!username || !password) {
+    throw new Error("MongoDB credentials are missing in .env.local");
+  }
+
+  await mongoose.connect(url, {
+    auth: { username, password },
+    dbName,
+  });
   isConnected = true;
 }

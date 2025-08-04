@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
-import { Pencil } from "lucide-react";
+import { Pencil, FileText, User, Settings } from "lucide-react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 
@@ -27,6 +27,15 @@ export default function Navbar() {
             <Pencil className="w-5 h-5" />
           </Link>
         )}
+        <Link href="/posts">
+          <FileText className="w-5 h-5" />
+        </Link>
+        <Link href="/profile">
+          <User className="w-5 h-5" />
+        </Link>
+        <Link href="/settings">
+          <Settings className="w-5 h-5" />
+        </Link>
         <ThemeToggle />
         {session ? (
           <button onClick={() => signOut()} className="text-sm">Logout</button>

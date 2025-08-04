@@ -11,16 +11,14 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const mongoUser = process.env.MONGODB_USERNAME;
-        const mongoPass = process.env.MONGODB_PASSWORD;
-        if (!mongoUser || !mongoPass) {
-          throw new Error("Missing MongoDB credentials");
-        }
+        const allowedUser = "starman011";
+        const allowedPass = "dewmYw-5fotka-hokder";
+
         if (
-          credentials?.username === mongoUser &&
-          credentials.password === mongoPass
+          credentials?.username === allowedUser &&
+          credentials.password === allowedPass
         ) {
-          return { id: "admin", name: mongoUser };
+          return { id: allowedUser, name: allowedUser };
         }
         return null;
       },

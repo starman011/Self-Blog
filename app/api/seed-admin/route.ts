@@ -1,7 +1,9 @@
 import { connectDB } from "@/lib/utils"; // your connectDB is in utils.ts
 import User from "@/models/User";
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
+
+export const runtime = "nodejs";
 
 export async function GET() {
   try {

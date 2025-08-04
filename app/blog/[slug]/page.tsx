@@ -2,10 +2,6 @@ import { connectDB } from "@/lib/utils";
 import Post from "@/models/Post";
 import { notFound } from "next/navigation";
 
-type Props = {
-  params: { slug: string };
-};
-
 // 🧠 Explicit post structure for TypeScript
 interface PostType {
   title: string;
@@ -15,10 +11,15 @@ interface PostType {
   createdAt: string;
 }
 
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
 export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
   await connectDB();
 
-  const rawPost = await Post.findOne({ slug: params.slug }).lean();
+  const rawPost = await Post.findOne({ slug }).lean();
 
   // 🧠 Check if it's null first
   if (!rawPost) return notFound();

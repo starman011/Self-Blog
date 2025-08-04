@@ -16,7 +16,7 @@ export default function Navbar() {
           height={32}
           className="rounded-full"
         />
-        <span className="font-semibold text-lg">Saqlain Khan's Blog</span>
+        <span className="font-semibold text-lg">Saqlain Khan&apos;s Blog</span>
       </div>
 
       <div className="flex items-center space-x-4">

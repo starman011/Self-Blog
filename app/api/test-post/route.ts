@@ -2,6 +2,8 @@ import { connectDB } from "@/lib/utils";
 import Post from "@/models/Post";
 import { NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+
 export async function GET() {
   try {
     await connectDB();
